@@ -1,0 +1,7 @@
+[package]
+name = "aoc2024"
+version = "0.1.0"
+authors = ["Gian Perrone <foss@gian-perrone.de>"]
+edition = "2021"
+
+[dependencies]
