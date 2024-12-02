@@ -17,8 +17,8 @@ fn run(input: &str) -> Result<(String, String)> {
 }
 
 struct Lists {
-    pub left: Vec<i32>,
-    pub right: Vec<i32>,
+    left: Vec<i32>,
+    right: Vec<i32>,
 }
 
 static RE_INPUT: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"^(\d+)\s+(\d+)$").unwrap());
