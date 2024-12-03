@@ -17,7 +17,10 @@ macro_rules! init {
             #[test]
             fn test() {
                 let input = include_str!("test.txt");
-                let (a, b) = try_run(input);
+                let (a, b) = match input.split_once("=====") {
+                    Some((input_a, input_b)) => (try_run(input_a).0, try_run(input_b).1),
+                    None => try_run(input),
+                };
                 assert_eq!($expected_a, &a);
                 assert_eq!($expected_b, &b);
             }
