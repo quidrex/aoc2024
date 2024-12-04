@@ -7,5 +7,6 @@ edition = "2021"
 [dependencies]
 anyhow = "1.0.93"
 itertools = "0.13.0"
+ndarray = "0.16.1"
 strum = { version = "0.26", features = ["derive"] }
 regex = "1.11.1"
