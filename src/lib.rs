@@ -1,3 +1,5 @@
+use std::time::Instant;
+
 pub mod util;
 
 #[macro_export]
@@ -6,7 +8,14 @@ macro_rules! aoc_day {
         fn main() {
             let test_input = include_str!("test.txt");
             let main_input = include_str!("main.txt");
-            $crate::run_aoc_day::<$t>(test_input, main_input, $expected_a, $expected_b);
+            $crate::run_aoc_day::<$t>(test_input, main_input, $expected_a, Some($expected_b));
+        }
+    };
+    ($t:ty, $expected_a:expr) => {
+        fn main() {
+            let test_input = include_str!("test.txt");
+            let main_input = include_str!("main.txt");
+            $crate::run_aoc_day::<$t>(test_input, main_input, $expected_a, None);
         }
     };
 }
@@ -21,7 +30,7 @@ pub fn run_aoc_day<T: AocDay>(
     test_input: &str,
     main_input: &str,
     expected_a: i64,
-    expected_b: i64,
+    expected_b: Option<i64>,
 ) {
     let test = T::from(&test_input);
     let main = T::from(&main_input);
@@ -34,19 +43,34 @@ pub fn run_aoc_day<T: AocDay>(
         if test_a_success { "==" } else { "!=" },
         expected_a
     );
-    if test_a_success {
-        println!("Main B: {}", main.a());
 
-        let test_b = test.b();
-        let test_b_success = test_b == expected_b;
-        println!(
-            "Test B: {} {} {}",
-            test_b,
-            if test_b_success { "==" } else { "!=" },
-            expected_b
-        );
+    if test_a_success {
+        let before_a = Instant::now();
+        let main_a = main.a();
+        let after_a = before_a.elapsed();
+
+        println!("Main A: {} in {:?}", main_a, after_a);
+
+        let test_b_success = if let Some(expected_b_some) = expected_b {
+            let test_b = test.b();
+            let test_b_success = Some(test_b) == expected_b;
+            println!(
+                "Test B: {} {} {}",
+                test_b,
+                if test_b_success { "==" } else { "!=" },
+                expected_b_some
+            );
+
+            test_b_success
+        } else {
+            true
+        };
+
         if test_b_success {
-            println!("Main B: {}", main.b());
+            let before_b = Instant::now();
+            let main_b = main.b();
+            let after_b = before_b.elapsed();
+            println!("Main B: {} in {:?}", main_b, after_b);
         }
     }
 }
