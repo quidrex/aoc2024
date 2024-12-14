@@ -5,7 +5,7 @@ authors = ["Gian Perrone <foss@gian-perrone.de>"]
 edition = "2021"
 
 [dependencies]
-anyhow = "1.0.93"
+anyhow = "1.0.94"
 itertools = "0.13.0"
 ndarray = "0.16.1"
 num = "0.4"

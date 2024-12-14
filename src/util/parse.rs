@@ -14,6 +14,9 @@ macro_rules! parse {
             (parse!($l)(l), parse!($r)(r))
         }
     };
+    (i32) => {
+        |s: &str| s.parse::<i32>().unwrap()
+    };
     (i64) => {
         |s: &str| s.parse::<i64>().unwrap()
     };
@@ -21,11 +24,10 @@ macro_rules! parse {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
     #[test]
     fn test() {
         assert_eq!(vec![1, 2, 3], parse!([i64 ","])("1,2,3"));
-        assert_eq!((1, vec![2, 3]), parse!((i64 ";" [i64 ","]))("1;2,3"));
+        assert_eq!((1, vec![2, 3]), parse!((i64 ";" [i32 ","]))("1;2,3"));
         assert_eq!([vec![1], vec![2, 3]], parse!([[i64 ","] ";" 2])("1;2,3"));
         assert_eq!(vec![[1, 2], [3, 4]], parse!([[i64 "," 2] ";"])("1,2;3,4"));
     }
