@@ -1,9 +1,10 @@
-use aoc2024::util::matrix::Matrix;
-use aoc2024::util::matrix_vec::MatrixVec;
+mod util;
+
 use aoc2024::{aoc_day, parse, AocDay};
 use regex::Regex;
 use std::iter::Iterator;
 use std::sync::LazyLock;
+use crate::util::{Matrix, MatrixVec};
 
 aoc_day!(Input, 12);
 
