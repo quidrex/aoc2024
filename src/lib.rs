@@ -32,31 +32,34 @@ pub fn run_aoc_day<T: AocDay>(
     expected_a: &str,
     expected_b: Option<&str>,
 ) {
-    let test = T::from(&test_input);
+    let (test_a, test_b) = match test_input.split_once("=====") {
+        Some((a, b)) => (T::from(&a), T::from(&b)),
+        None => (T::from(&test_input), T::from(&test_input)),
+    };
     let main = T::from(&main_input);
 
-    let test_a = test.a();
-    let test_a_success = test_a == expected_a;
+    let test_a_result = test_a.a();
+    let test_a_success = test_a_result == expected_a;
     println!(
         "Test A: {} {} {}",
-        test_a,
+        test_a_result,
         if test_a_success { "==" } else { "!=" },
         expected_a
     );
 
     if test_a_success {
         let before_a = Instant::now();
-        let main_a = main.a();
+        let main_a_result = main.a();
         let after_a = before_a.elapsed();
 
-        println!("Main A: {} in {:?}", main_a, after_a);
+        println!("Main A: {} in {:?}", main_a_result, after_a);
 
         let test_b_success = if let Some(expected_b_some) = expected_b {
-            let test_b = test.b();
-            let test_b_success = Some(test_b.as_str()) == expected_b;
+            let test_b_result = test_b.b();
+            let test_b_success = Some(test_b_result.as_str()) == expected_b;
             println!(
                 "Test B: {} {} {}",
-                test_b,
+                test_b_result,
                 if test_b_success { "==" } else { "!=" },
                 expected_b_some
             );
@@ -68,9 +71,9 @@ pub fn run_aoc_day<T: AocDay>(
 
         if test_b_success {
             let before_b = Instant::now();
-            let main_b = main.b();
+            let main_b_result = main.b();
             let after_b = before_b.elapsed();
-            println!("Main B: {} in {:?}", main_b, after_b);
+            println!("Main B: {} in {:?}", main_b_result, after_b);
         }
     }
 }
