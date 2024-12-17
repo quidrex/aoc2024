@@ -3,7 +3,7 @@ use regex::Regex;
 use std::iter::Iterator;
 use std::sync::LazyLock;
 
-aoc_day!(Day13, 480);
+aoc_day!(Day13, "480");
 
 struct Day13 {
     machines: Vec<Machine>,
@@ -46,12 +46,12 @@ impl AocDay for Day13 {
         Day13 { machines }
     }
 
-    fn a(&self) -> i64 {
-        self.optimize(0)
+    fn a(&self) -> String {
+        self.optimize(0).to_string()
     }
 
-    fn b(&self) -> i64 {
-        self.optimize(10_000_000_000_000)
+    fn b(&self) -> String {
+        self.optimize(10_000_000_000_000).to_string()
     }
 }
 

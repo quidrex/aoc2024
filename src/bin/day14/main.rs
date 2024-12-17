@@ -1,12 +1,12 @@
 mod util;
 
+use crate::util::{Matrix, MatrixVec};
 use aoc2024::{aoc_day, parse, AocDay};
 use regex::Regex;
 use std::iter::Iterator;
 use std::sync::LazyLock;
-use crate::util::{Matrix, MatrixVec};
 
-aoc_day!(Input, 12);
+aoc_day!(Input, "12");
 
 struct Input {
     dim: MatrixVec,
@@ -47,12 +47,12 @@ impl AocDay for Input {
         Input { dim, guard_rules }
     }
 
-    fn a(&self) -> i64 {
-        self.calculate_safety_factor(100) as i64
+    fn a(&self) -> String {
+        self.calculate_safety_factor(100).to_string()
     }
 
-    fn b(&self) -> i64 {
-        self.find_tree() as i64
+    fn b(&self) -> String {
+        self.find_tree().to_string()
         /*let mut seconds = 8;
 
         loop {

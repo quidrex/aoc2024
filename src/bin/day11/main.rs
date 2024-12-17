@@ -2,7 +2,7 @@ use aoc2024::{aoc_day, parse, AocDay};
 use std::collections::HashMap;
 use std::iter::Iterator;
 
-aoc_day!(Day11, 55312);
+aoc_day!(Day11, "55312");
 
 #[derive(Clone)]
 struct Day11 {
@@ -15,24 +15,24 @@ impl AocDay for Day11 {
         Day11 { stones }
     }
 
-    fn a(&self) -> i64 {
+    fn a(&self) -> String {
         let mut state = self.init();
 
         for _ in 0..25 {
             state.blink();
         }
 
-        state.count() as i64
+        state.count().to_string()
     }
 
-    fn b(&self) -> i64 {
+    fn b(&self) -> String {
         let mut state = self.init();
 
         for _ in 0..75 {
             state.blink();
         }
 
-        state.count() as i64
+        state.count().to_string()
     }
 }
 

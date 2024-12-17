@@ -4,7 +4,7 @@ use crate::util::*;
 use aoc2024::{aoc_day, AocDay};
 use ndarray::prelude::*;
 
-aoc_day!(Day15, 10092, 9021);
+aoc_day!(Day15, "10092", "9021");
 
 struct Day15 {
     warehouse: Warehouse,
@@ -60,16 +60,16 @@ impl AocDay for Day15 {
         Day15 { program, warehouse }
     }
 
-    fn a(&self) -> i64 {
+    fn a(&self) -> String {
         let mut clone = self.warehouse.clone();
         clone.run_program(&self.program);
-        clone.get_box_coordinate_sum() as i64
+        clone.get_box_coordinate_sum().to_string()
     }
 
-    fn b(&self) -> i64 {
+    fn b(&self) -> String {
         let mut expanded = self.warehouse.expand();
         expanded.run_program(&self.program);
-        expanded.get_box_coordinate_sum() as i64
+        expanded.get_box_coordinate_sum().to_string()
     }
 }
 

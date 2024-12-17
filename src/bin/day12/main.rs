@@ -4,7 +4,7 @@ use ndarray::Array2;
 use std::ops::Add;
 use strum::{EnumIter, FromRepr, IntoEnumIterator};
 
-aoc_day!(Day12, 1930, 1206);
+aoc_day!(Day12, "1930", "1206");
 
 #[derive(Clone)]
 struct Day12 {
@@ -17,20 +17,20 @@ impl AocDay for Day12 {
         Day12 { matrix: grid }
     }
 
-    fn a(&self) -> i64 {
+    fn a(&self) -> String {
         let metrics_list = self.to_region_matrix().calculate();
         metrics_list
             .iter()
             .map(|metrics| metrics.area * metrics.perimeter)
-            .sum::<usize>() as i64
+            .sum::<usize>().to_string()
     }
 
-    fn b(&self) -> i64 {
+    fn b(&self) -> String {
         let metrics_list = self.to_region_matrix().calculate();
         metrics_list
             .iter()
             .map(|metrics| metrics.area * metrics.sides)
-            .sum::<usize>() as i64
+            .sum::<usize>().to_string()
     }
 }
 

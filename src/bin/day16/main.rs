@@ -3,7 +3,7 @@ use aoc2024::{aoc_day, AocDay};
 use std::collections::HashMap;
 use strum::EnumString;
 
-aoc_day!(Day16, 7036, 45);
+aoc_day!(Day16, "7036", "45");
 
 struct Day16 {
     grid: Grid<Location>,
@@ -34,12 +34,12 @@ impl AocDay for Day16 {
         Day16 { grid, start_idx }
     }
 
-    fn a(&self) -> i64 {
-        self.calculate().0 as i64
+    fn a(&self) -> String {
+        self.calculate().0.to_string()
     }
 
-    fn b(&self) -> i64 {
-        self.calculate().1 as i64
+    fn b(&self) -> String {
+        self.calculate().1.to_string()
     }
 }
 

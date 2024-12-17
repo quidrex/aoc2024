@@ -22,15 +22,15 @@ macro_rules! aoc_day {
 
 pub trait AocDay {
     fn from(input: &str) -> Self;
-    fn a(&self) -> i64;
-    fn b(&self) -> i64;
+    fn a(&self) -> String;
+    fn b(&self) -> String;
 }
 
 pub fn run_aoc_day<T: AocDay>(
     test_input: &str,
     main_input: &str,
-    expected_a: i64,
-    expected_b: Option<i64>,
+    expected_a: &str,
+    expected_b: Option<&str>,
 ) {
     let test = T::from(&test_input);
     let main = T::from(&main_input);
@@ -53,7 +53,7 @@ pub fn run_aoc_day<T: AocDay>(
 
         let test_b_success = if let Some(expected_b_some) = expected_b {
             let test_b = test.b();
-            let test_b_success = Some(test_b) == expected_b;
+            let test_b_success = Some(test_b.as_str()) == expected_b;
             println!(
                 "Test B: {} {} {}",
                 test_b,

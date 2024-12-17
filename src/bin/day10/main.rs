@@ -4,7 +4,7 @@ use ndarray::Array2;
 use std::collections::HashMap;
 use std::iter::Iterator;
 
-aoc_day!(Day10, 36, 81);
+aoc_day!(Day10, "36", "81");
 
 struct Day10 {
     trail_map: Array2<u32>,
@@ -16,12 +16,12 @@ impl AocDay for Day10 {
         Day10 { trail_map: data }
     }
 
-    fn a(&self) -> i64 {
-        self.find_trailheads().0 as i64
+    fn a(&self) -> String {
+        self.find_trailheads().0.to_string()
     }
 
-    fn b(&self) -> i64 {
-        self.find_trailheads().1 as i64
+    fn b(&self) -> String {
+        self.find_trailheads().1.to_string()
     }
 }
 
