@@ -6,6 +6,7 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0.94"
+arrayvec = "0.7.6"
 enum-map = "2.7.3"
 itertools = "0.13.0"
 ndarray = "0.16.1"
