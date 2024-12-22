@@ -32,7 +32,7 @@ pub fn run_aoc_day<T: AocDay>(
     expected_a: &str,
     expected_b: Option<&str>,
 ) {
-    let (test_a, test_b) = match test_input.split_once("=====") {
+    let (test_a, test_b) = match test_input.split_once("=====\n") {
         Some((a, b)) => (T::from(&a), T::from(&b)),
         None => (T::from(&test_input), T::from(&test_input)),
     };
